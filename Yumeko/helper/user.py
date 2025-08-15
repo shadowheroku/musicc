@@ -143,21 +143,9 @@ MUTE = ChatPermissions(
     can_send_messages=False,
     can_send_media_messages=False,
     can_send_polls=False,
-    can_add_web_page_previews=False,
-    can_change_info=False,
-    can_invite_users=False,
-    can_pin_messages=False,
-    can_manage_topics=False,
-    can_send_audios=False,
-    can_send_docs=False,
-    can_send_games=False,
-    can_send_gifs=False,
-    can_send_inline=False,
-    can_send_photos=False,
-    can_send_stickers=False,
-    can_send_videos=False,
-    can_send_voices=False
+    can_add_web_page_previews=False
 )
+
 
 UNMUTE = ChatPermissions(
     can_send_messages = True ,
