@@ -21,10 +21,8 @@ import pytz
 
 # -----------------------
 # STARTUP TIME
-# -----------------------
-start_time = time.time()
+
 ist = pytz.timezone("Asia/Kolkata")  # define timezone first
-start_time_str = datetime.now(ist).strftime("%d-%b-%Y %I:%M:%S %p")
 
 
 # -----------------------
