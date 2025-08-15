@@ -3,16 +3,16 @@ from pyrogram import filters
 class config:
     
     #Client
-    API_ID = 28620311
-    API_HASH = "3b5c4ed0598e48fc1ab552675555e693"
-    BOT_TOKEN = "7797817336:AAGSE1E9EyRCvJhmJLlic_en-eo3IIAkiU4"
-    BOT_NAME = "Naruto Uzumaki"
-    BOT_USERNAME = "@Naruto_RoXbot"
-    BOT_ID = "8001037032"
+    API_ID = 23212132
+    API_HASH = "1c17efa86bdef8f806ed70e81b473c20"
+    BOT_TOKEN = "8013665655:AAEdJiyyXhVtgBBUoCFTbs3kA5xX6EYjKjc"
+    BOT_NAME = "Monic"
+    BOT_USERNAME = "@Yoruichi_ProBot"
+    BOT_ID = "8013665655"
     WORKERS = 30 #Don't Change 
     MAX_MESSAGE_CACHE_SIZE = 100 #Don't Change 
     MAX_CONCURRENT_TRANSMISSIONS = 10 #Don't Change 
-    SESSION_STRING = ""
+    SESSION_STRING = "BQGvJ_0Adt6lmVaTljo96G9YV0xaOi0O26V2utMXtqO1d9cySnNMh1KCQh2oqT2rxMwDjTj274JF5QDUOF1wO21nH52TvrOuqDvnuZbiOsKM7o4XeTS5CLmwJFAP0IKDvAvEgCnfVGLBGuaOJEijZNaP4nhFvtMP_sMLYjLATOsJHZLEkdz4PkJyfQZCMTV6MSR1D7BFnythV1VTBRA7qIjqYenmEZzGVHXGy4DaetN-BbDwJZmf2QIIZx90Q2-zvFl_z7-2srBWXcOYYDT5pZ1UkwtX71c1hChhmuFJHhLejZz0PWoTUyVr35GRto9J5QU4D0xGvdTaw8qi7m7qe5Gk4IZkjQAAAAHdw02OAA"
     
      
     #Git
@@ -22,12 +22,12 @@ class config:
 
     #Info
     BOT_VERSION = "1.1"
-    OWNER_ID = 7392339658
-    DEV_ID = 7637698136
-    JOHAN = 7668725569
+    OWNER_ID = 8429156335
+    DEV_ID = 8429156335
+    JOHAN = 8429156335
     OWNERS = [OWNER_ID, JOHAN]
-    JOHAN_USERNAME = "shenarc"
-    SUPPORT_CHAT = -1001968443561
+    JOHAN_USERNAME = "meisred"
+    SUPPORT_CHAT = -1002800777153
     SUPPORT_CHAT_USERNAME = "ShinobiXupdates"
     SUPPORT_CHAT_LINK = "https://t.me/shinobiXupdates"
     LOG_CHANNEL = -1002359614394
@@ -42,8 +42,8 @@ class config:
     
     
     #Database
-    MONGODB_URI = "mongodb://localhost:27017"
-    DATABASE_NAME = "Kafkaaa"
+    MONGODB_URI = "mongodb+srv://ryumasgod:ryumasgod@cluster0.ojfkovp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    DATABASE_NAME = "Monic"
 
     #API
     ARQ_API_KEY = "RLWCED-WZASYO-AWOLTB-ITBWTP-ARQ"
