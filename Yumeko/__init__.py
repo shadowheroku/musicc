@@ -11,7 +11,17 @@ from datetime import datetime
 import pytz
 
 start_time = time.time() 
-ist = pytz.timezone("Asia/Kolkata")
+import pytz
+from telegram.ext import ApplicationBuilder
+
+# Build PTB Application with pytz timezone
+ptb = (
+    ApplicationBuilder()
+    .token(config.BOT_TOKEN)
+    .timezone(pytz.timezone("Asia/Kolkata"))  # explicitly use pytz timezone
+    .build()
+)
+
 start_time_str = datetime.now(ist).strftime("%d-%b-%Y %I:%M:%S %p")
 
 
