@@ -49,61 +49,58 @@ async def resolve_user(client: app, message: Message):  # type: ignore
 
 
 DEMOTE = ChatPrivileges(
-                            can_delete_messages = False,
-                            can_manage_video_chats = False,
-                            can_restrict_members = False,
-                            can_promote_members = False,
-                            can_change_info = False,
-                            can_edit_messages = False,
-                            can_invite_users = False,
-                            can_pin_messages = False,
-                            can_post_stories = False,
-                            can_edit_stories = False,
-                            can_delete_stories = False,
-                            is_anonymous = False
-            )
+    can_manage_chat=False,
+    can_delete_messages=False,
+    can_manage_video_chats=False,
+    can_restrict_members=False,
+    can_promote_members=False,
+    can_change_info=False,
+    can_invite_users=False,
+    can_pin_messages=False,
+    is_anonymous=False
+)
+
+            
 
 PROMOTE = ChatPrivileges(
-                            can_delete_messages = True,
-                            can_manage_video_chats = True,
-                            can_restrict_members = False,
-                            can_promote_members = False,
-                            can_change_info = False,
-                            can_invite_users = True,
-                            can_pin_messages = True,
-                            can_post_stories = True,
-                            can_edit_stories = False,
-                            can_delete_stories = False,
-                            is_anonymous = False
-            )
+    can_manage_chat=True,
+    can_delete_messages=True,
+    can_manage_video_chats=True,
+    can_restrict_members=False,
+    can_promote_members=False,
+    can_change_info=False,
+    can_invite_users=True,
+    can_pin_messages=True,
+    is_anonymous=False
+)
+
+            
 
 FULLPROMOTE = ChatPrivileges(
-                            can_delete_messages = True,
-                            can_manage_video_chats = True,
-                            can_restrict_members = True,
-                            can_promote_members = True,
-                            can_change_info = True,
-                            can_invite_users = True,
-                            can_pin_messages = True,
-                            can_post_stories = True,
-                            can_edit_stories = True,
-                            can_delete_stories = True,
-                            is_anonymous = False
-            )
+    can_manage_chat=True,
+    can_delete_messages=True,
+    can_manage_video_chats=True,
+    can_restrict_members=True,
+    can_promote_members=True,
+    can_change_info=True,
+    can_invite_users=True,
+    can_pin_messages=True,
+    is_anonymous=False
+)
+
 
 LOWPROMOTE = ChatPrivileges(
-                            can_delete_messages = False,
-                            can_manage_video_chats = False,
-                            can_restrict_members = False,
-                            can_promote_members = False,
-                            can_change_info = False,
-                            can_invite_users = True,
-                            can_pin_messages = True,
-                            can_post_stories = False,
-                            can_edit_stories = False,
-                            can_delete_stories = False,
-                            is_anonymous = False
-            )
+    can_manage_chat=False,
+    can_delete_messages=False,
+    can_manage_video_chats=False,
+    can_restrict_members=False,
+    can_promote_members=False,
+    can_change_info=False,
+    can_invite_users=True,
+    can_pin_messages=True,
+    is_anonymous=False
+)
+
 
 async def resolve_user_for_afk(client: app, message: Message):  # type: ignore
     try:
@@ -148,32 +145,19 @@ MUTE = ChatPermissions(
 
 
 UNMUTE = ChatPermissions(
-    can_send_messages = True ,
-    can_send_media_messages = True ,
-    can_add_web_page_previews = True ,
-    can_send_docs = True ,
-    can_send_games = True ,
-    can_send_gifs = True ,
-    can_send_inline = True ,
-    can_send_photos = True ,
-    can_send_stickers = True ,
-    can_send_videos = True ,
-    can_send_voices = True
+    can_send_messages=True,
+    can_send_media_messages=True,
+    can_send_polls=True,
+    can_add_web_page_previews=True
 )
+
 RESTRICT = ChatPermissions(
-    can_send_messages = True ,
-    can_send_media_messages = False ,
-    can_add_web_page_previews = False ,
-    can_send_audios = False ,
-    can_send_docs = False ,
-    can_send_games = False ,
-    can_send_gifs = False ,
-    can_send_inline = True ,
-    can_send_photos = True ,
-    can_send_stickers = True ,
-    can_send_videos = False ,
-    can_send_voices = False
+    can_send_messages=True,             # Allow text messages
+    can_send_media_messages=False,      # Disallow any media (photos, videos, audio, etc.)
+    can_send_polls=False,                # Disallow polls
+    can_add_web_page_previews=False      # Disallow link previews
 )
+
 
 
 async def update_admin_cache(chat_id: int, context: ContextTypes.DEFAULT_TYPE):
@@ -256,45 +240,17 @@ async def has_admin_right(update: Update, context: ContextTypes.DEFAULT_TYPE, us
 
 # Define permissions for night mode
 NIGHT_MODE_PERMISSIONS = ChatPermissions(
-    can_send_messages = True ,
-    can_send_media_messages = False,
-    can_send_polls = False,
-    can_add_web_page_previews = False ,
-    can_change_info = False,
-    can_invite_users = False,
-    can_pin_messages = False,
-    can_manage_topics = False,
-    can_send_audios = False,
-    can_send_docs = False,
-    can_send_games = False,
-    can_send_gifs = False,
-    can_send_inline = False,
-    can_send_photos = False,
-    can_send_plain = False,
-    can_send_roundvideos =False ,
-    can_send_stickers = False,
-    can_send_videos = False,
-    can_send_voices = False
+    can_send_messages=True,         # Allow text
+    can_send_media_messages=False,  # Block media (photos, videos, audio, etc.)
+    can_send_polls=False,            # Block polls
+    can_add_web_page_previews=False  # Block link previews
 )
 
+
 DEFAULT_PERMISSIONS = ChatPermissions(
-    can_send_messages = True ,
-    can_send_media_messages = True,
-    can_send_polls = True,
-    can_add_web_page_previews = True ,
-    can_change_info = False,
-    can_invite_users = True,
-    can_pin_messages = False,
-    can_manage_topics = False,
-    can_send_audios = True,
-    can_send_docs = True,
-    can_send_games = True,
-    can_send_gifs = True,
-    can_send_inline = True,
-    can_send_photos = True,
-    can_send_plain = True,
-    can_send_roundvideos =True ,
-    can_send_stickers = True,
-    can_send_videos = True,
-    can_send_voices = True
+    can_send_messages=True,
+    can_send_media_messages=True,  # includes photos, videos, audio, stickers, documents, etc.
+    can_send_polls=True,
+    can_add_web_page_previews=True
 )
+
