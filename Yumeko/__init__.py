@@ -1,34 +1,28 @@
-from pyrogram import Client 
-from config import config
-import uvloop
-from cachetools import TTLCache
+# -*- coding: utf-8 -*-
+import time
 import logging
+from datetime import datetime
+
+import uvloop
+import pytz
+from cachetools import TTLCache
+from pyrogram import Client
 from telethon import TelegramClient
 from telegram.ext import ApplicationBuilder
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-import time 
-from datetime import datetime
-import pytz
 
-start_time = time.time() 
-import pytz
-from telegram.ext import ApplicationBuilder
+from config import config
 
-# Build PTB Application with pytz timezone
-ptb = (
-    ApplicationBuilder()
-    .token(config.BOT_TOKEN)
-    .timezone(pytz.timezone("Asia/Kolkata"))  # explicitly use pytz timezone
-    .build()
-)
-
+# -------------------- Start Time --------------------
+start_time = time.time()
+ist = pytz.timezone("Asia/Kolkata")
 start_time_str = datetime.now(ist).strftime("%d-%b-%Y %I:%M:%S %p")
 
+# -------------------- Scheduler --------------------
+scheduler = AsyncIOScheduler(timezone=ist)
 
-scheduler = AsyncIOScheduler()
-
+# -------------------- Logging --------------------
 open("log.txt", "w").close()
-
 logging.basicConfig(
     level=logging.INFO,
     format="[%(asctime)s - %(levelname)s] - Yumeko - %(message)s",
@@ -38,18 +32,16 @@ logging.basicConfig(
         logging.StreamHandler(),
     ],
 )
-
-
 logging.getLogger("httpx").setLevel(logging.ERROR)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 logging.getLogger("telethon").setLevel(logging.ERROR)
 logging.getLogger("telegram").setLevel(logging.ERROR)
-
-
 log = logging.getLogger(__name__)
 
+# -------------------- uvloop --------------------
 uvloop.install()
 
+# -------------------- Pyrogram Bot --------------------
 class App(Client):
     def __init__(self):
         super().__init__(
@@ -59,13 +51,20 @@ class App(Client):
             bot_token=config.BOT_TOKEN,
             workers=config.WORKERS,
             max_concurrent_transmissions=config.MAX_CONCURRENT_TRANSMISSIONS,
-            max_message_cache_size=config.MAX_MESSAGE_CACHE_SIZE
-)
+            max_message_cache_size=config.MAX_MESSAGE_CACHE_SIZE,
+        )
 
 app = App()
 
-ptb = ApplicationBuilder().token(config.BOT_TOKEN).build()
+# -------------------- PTB Application --------------------
+ptb = (
+    ApplicationBuilder()
+    .token(config.BOT_TOKEN)
+    .timezone(ist)
+    .build()
+)
 
+# -------------------- Telethon Client --------------------
 telebot = TelegramClient(
     "Yumekoo",
     config.API_ID,
@@ -74,25 +73,19 @@ telebot = TelegramClient(
     connection_retries=5
 )
 
-
-
-admin_cache = TTLCache(maxsize=1000000, ttl=300)
-admin_cache_ptb = TTLCache(maxsize=100000 , ttl=300)
+# -------------------- Admin Caches --------------------
+admin_cache = TTLCache(maxsize=1_000_000, ttl=300)
+admin_cache_ptb = TTLCache(maxsize=100_000, ttl=300)
 admin_cache_reload = {}
-BACKUP_FILE_JSON = "last_backup.json"  
+BACKUP_FILE_JSON = "last_backup.json"
 
-
-
-
-
-
-#Handler Groups
+# -------------------- Handler Groups --------------------
 WATCHER_GROUP = 17
 GFILTER_GROUP = 21
 COMMON_CHAT_WATCHER_GROUP = 100
 GLOBAL_ACTION_WATCHER_GROUP = 1
-LOCK_GROUP = 2 #ptb
-ANTI_FLOOD_GROUP = 3 #ptb
+LOCK_GROUP = 2  # PTB
+ANTI_FLOOD_GROUP = 3  # PTB
 BLACKLIST_GROUP = 4
 IMPOSTER_GROUP = 5
 FILTERS_GROUP = 6
