@@ -151,7 +151,6 @@ UNMUTE = ChatPermissions(
     can_send_messages = True ,
     can_send_media_messages = True ,
     can_add_web_page_previews = True ,
-    can_send_audios = True ,
     can_send_docs = True ,
     can_send_games = True ,
     can_send_gifs = True ,
